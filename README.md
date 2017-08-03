@@ -1,5 +1,7 @@
 # Ruby on Rails Tutorial sample application
 
+## sample_app
+
 This is the sample application for
 [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](http://www.railstutorial.org/)
@@ -39,3 +41,12 @@ $ rails server
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
+
+# My Solutions to Exercises
+
+## Section 3.1
+1. Confirmed. It does.
+2. Verified. It works.
+
+# Section 3.2
+
