@@ -48,5 +48,8 @@ For more information, see the
 1. Confirmed. It does.
 2. Verified. It works.
 
-# Section 3.2
+# Section 3.2.1
+1. Successfully generated Foo controller with `rails generate controller Foo bar baz`
+2. Successfully destroyed Foo controller with `rails destroy controller Foo bar baz`
 
+# Section 3.
