@@ -52,4 +52,19 @@ For more information, see the
 1. Successfully generated Foo controller with `rails generate controller Foo bar baz`
 2. Successfully destroyed Foo controller with `rails destroy controller Foo bar baz`
 
-# Section 3.
+# Section 3.4.2
+1. Tests run successfully. Replaced "Ruby on Rails Tutorial Sample App" in `test/controllers/static_pages_controller_test.rb` with an instance variable `@base_title` and used string interpolation to inject `@base_title` into the title of each page.
+
+# Section 3.4.3
+1. Contact Page added. Added `get "static_pages/contact"` route. Added `contact` action in StaticPages controller. Created new Contact Page view (/views/static_pages/contact.html.erb). Added content to Contact Page. All tests pass.
+
+# Section 3.4.4
+1. Test passes. Test looks similar to other tests written so far: 
+```
+test "should get root" do
+  get root_url
+  assert_response :success
+end
+```
+2. Commenting out `root 'static_pages#home'` does cause tests to fail, and tests pass when uncommented.
+
