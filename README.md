@@ -239,3 +239,15 @@ The image no longer appears on the page, but the `<a><img ... /></a>` does still
 1. Integration tests do fail if `about_path` is changed to `contact_path`
 2. Both `application_helper_test`s pass successfully.
 
+## Section 5.4.1
+1. Modified test to `get signup_path`
+2. The change in #1 does cause one test to fail.
+
+## Section 5.4.2
+1. Added `signup_path` in previous section.
+2. Test does run red when commented out, green when not commented out.
+3. Added test to navigate to sign up page and verify title is correct:
+```
+get signup_path
+assert_select "title", full_title("Sign Up")
+```
