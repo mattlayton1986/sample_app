@@ -70,15 +70,15 @@ end
 
 ## Section 4.2.2
 1. `city = "Chicago"`, `state = "Illinois"`
-2. `puts "#{city}, #{state}"` => # `Chicago, Illinois`
-3. `puts "#{city},\t#{state}"` => # `Chicago,        Illinois`
-4. `puts '#{city},\t#{state}'` => # `Chicago,\tIllinois`
+2. `puts "#{city}, #{state}"` #=> `Chicago, Illinois`
+3. `puts "#{city},\t#{state}"` #=> `Chicago,        Illinois`
+4. `puts '#{city},\t#{state}'` #=> `Chicago,\tIllinois`
 
 ## Section 4.2.3
-1. "racecar".length # => 7
-2. "racecar".reverse # => "racecar"
-3. s == s.reverse # => true
-4. prints "Its a palindrome!"; returns nil and prints nothing
+1. `"racecar".length` # => 7
+2. `"racecar".reverse` # => "racecar"
+3. `s == s.reverse` # => true
+4. `prints "Its a palindrome!"`; returns nil and prints nothing
 
 ## Section 4.2.4
 1. `s == s.reverse`
@@ -94,7 +94,7 @@ s = s.split.join  #=> "AmanaplanacanalPanama"
 s = s.downcase    #=> "amanaplanacanalpanama"
 s == s.reverse    #=> true
 ```
-4. `alpha[7]`           #=> 'h'
+4. `alpha[7]`           #=> 'h'   
    `alpha.reverse[7]`   #=> 's'
 
 ## Section 4.3.2
@@ -203,3 +203,39 @@ def alphabetical_name
 end
 ```
 3. `user.full_name.split == user.alphabetical_name.split(', ').reverse` #=> true
+
+## Section 5.1.1
+1. `curl -OL cdn.learnenough.com/kitten.jpg`
+2. `mv kitten.jpg app/assets/images/`
+3. `<%= image_tag("kitten.jpg", alt: "Cute Kitten" %>`
+
+## Section 5.1.2
+1. `<%#= image_tag("kitten.jpg", alt: "Cute Kitten") %>`; kitten image does not show up at all in source code
+2. Added
+```
+img {
+  display: none;
+}
+```
+The image no longer appears on the page, but the `<a><img ... /></a>` does still appear in source code
+
+## Section 5.1.3
+1. Done
+2. Confirmed: tests are red.
+3. After `_rails_default.html.erb` is created, all tests pass.s
+
+## Section 5.2.2
+1. Done.
+
+## Section 5.3.2
+1. `get '/help', to: 'static_pages#help', as: 'helf'`
+2. change test to `get helf_path`; tests pass
+3. Done.
+
+## Section 5.3.3
+1. and 2. Done
+
+## Section 5.3.4
+1. Integration tests do fail if `about_path` is changed to `contact_path`
+2. Both `application_helper_test`s pass successfully.
+
