@@ -306,3 +306,9 @@ assert_select "title", full_title("Sign Up")
 ## Section 6.3.3
 1. `user.valid?` #=> false
 2. `user.errors.full_messages` #=> ["Password is too short (minimum is 6 characters)"]
+
+## Section 6.3.4
+1. `user.find_by(id: 1)`
+2. Skip
+3. Skip
+
