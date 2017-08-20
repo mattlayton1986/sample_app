@@ -312,3 +312,98 @@ assert_select "title", full_title("Sign Up")
 2. Skip
 3. Skip
 
+## Section 7.1.1
+1. controller: static_pages, action: about
+2. 
+```
+---
+id: 1
+name: Matthew Layton
+email: layton.matt1986@gmail.com
+created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &1 2017-08-15 02:17:22.207886000 Z
+  zone: &2 !ruby/object:ActiveSupport::TimeZone
+    name: Etc/UTC
+  time: *1
+updated_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &3 2017-08-15 02:17:22.207886000 Z
+  zone: *2
+  time: *3
+password_digest: "$2a$10$IF/LaC3I0IC0IsNzTrmXOeJ0G4rRtpzlPR4UExsLAgtN8aGLR1fGm"
+=> nil
+```
+`puts user.attributes.to_yaml` yields identical console output results as `y user.attributes`
+
+## Section 7.1.2
+1. Added with `<%= @user.created_at %>, <%= @user.updated_at %>`
+2. Added with `<%= Time.now %>`; time updates each time browser is refreshed.
+
+## Section 7.1.3
+1. `puts params.to_yaml` #=>
+```
+--- !ruby/object:ActionController::Parameters
+parameters: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  controller: users
+  action: show
+  id: '1'
+permitted: false
+nil
+```
+2. @user = nil
+
+## Section 7.1.4
+1. eaced42f18e456a5e142146facc83c99
+2. This code does work as expected.
+3. This does work. The `options` hash parameter allows for the possibility of passing multiple options into the helper; the keyword arguments form gives the helper _only_ the `size` option.
+
+## Section 7.2.1
+1. "Undefined method 'nome' for User..."
+2. Replacing all occurrences of `f` with `foobar` does still work. It would still be a bad idea, though, because variable names should have some indication of what their function/reference is.
+3. 
+## Section 7.2.2
+1. Forms are more complicated than typical HTML features and require more understanding of back-end processes for form submission, validation, and database storage than other markup features, so its MORE than enough to be dangerous with.
+
+## Section 7.3.2
+1. Admin parameter does show up in debug dump:
+```
+--- !ruby/object:ActionController::Parameters
+parameters: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  admin: '1'
+  controller: users
+  action: new
+permitted: false
+```
+
+## Section 7.3.3
+1. Changing minimum length of password to 5 does update error message: "Password is too short (minimum is 5 characters)"
+2. Both are routes for the `GET users#new` action. When clicking the Signup button on the home page, the `signup_path` is called, which is defined in the routes as `get '/signup', to: 'users#new'`. When submitting the Signup form, however, an invalid form submission reloads the /users url via the call to `render 'new'`, which route is defined in `resources :users`, thus allowing for two different paths to display the same page.
+
+## Section 7.3.4
+1. Implemented error message tests as follows:
+```
+assert_select 'div#error_explanation'
+assert_select 'div.field_with_errors'
+```
+2. Making these changes does ensure the URL /signup shows for both unsubmitted and submitted-with-errors signup pages. All tests still pass, because the form does not POST/#create successfully, so `users#new` is rendered each time, which is what our test currently expects.
+3. Tests are still green after `changing users_path` to `signup_path`.
+4. Made appropriate changes to tests and all tests pass. New test added is: `assert_select 'form[action="/signup"]'`
+
+## Section 7.4.1
+1. User is created successfully: `User.count` is 2, and `User.find(2)` returns the newly-created user.
+2. Both forms of the redirect work successfully and correctly.
+
+## Section 7.4.2
+1. `"#{:success}"` => Returns the raw string "success"
+2. The flash iteration exercise uses symbol interpolation to convert the key and value of each message into a string before `puts`ing them to the console.
+
+## Section 7.4.3
+1. `User.find_by(email: "example@railstutorial.org")`
+2. Done, and Gravatar correctly appears.
+
+## Section 7.4.4
+1. Per the hint given in the exercise: `assert_not flash.empty?` Added an additional test to make sure the correct key shows up for the flash: ` assert_select 'div[class$="success"]'`
+2. Using `content_tag` to clean up the flash HTML still passes all tests.
+3. Tests do fail with a "RuntimeError: not a redirect! 204 No Content" when the redirect command is commented out.
+4. If `@user.save` is false, nothing will be written to the database, so the `User.count` will not be increased by one.
+
+## Section 7.5.
