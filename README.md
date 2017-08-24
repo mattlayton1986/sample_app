@@ -406,4 +406,72 @@ assert_select 'div.field_with_errors'
 3. Tests do fail with a "RuntimeError: not a redirect! 204 No Content" when the redirect command is commented out.
 4. If `@user.save` is false, nothing will be written to the database, so the `User.count` will not be increased by one.
 
-## Section 7.5.
+## Section 7.5.3
+1. SSL lock and `https://` both appear in browser bar of Heroku app.
+2. Profile successfully created and Gravatar appears correctly.
+
+## Section 8.1.1
+1. `GET login_path` retrieves the page that displays the login form. `POST login_path` transmits the login form data to the server for validation.
+2. 
+```
+rails routes | grep users#
+ ``signup GET    /signup(.:format)         users#new
+          POST   /signup(.:format)         users#create
+    users GET    /users(.:format)          users#index
+          POST   /users(.:format)          users#create
+ new_user GET    /users/new(.:format)      users#new
+edit_user GET    /users/:id/edit(.:format) users#edit
+     user GET    /users/:id(.:format)      users#show
+          PATCH  /users/:id(.:format)      users#update
+          PUT    /users/:id(.:format)      users#update
+          DELETE /users/:id(.:format)      users#destroy
+```
+```
+rails routes | grep sessions#
+    login GET    /login(.:format)          sessions#new
+          POST   /login(.:format)          sessions#create
+   logout DELETE /logout(.:format)         sessions#destroy
+```
+
+## Section 8.1.2
+1. Rails knows to submit the form to the Sessions controller's `create` action because we've defined the `form_for` url as `login_path` and the data will be `post`ed; `post login_path` is defined in our routes as using the `sessions#create` action of the controller.
+
+## Section 8.1.3
+1. Using Rails console, each of the values in Table 8.2 were confirmed to be correct.
+
+## Section 8.1.5
+1. Followed sequence in browser and flash properly disappears when a subsequent request is made.
+
+## Section 8.2.1
+1. bFFmZ2ExSjM4ZC9KT2piajdIVHN4NTVjTUxQbmhSU2xkNmh2TkZlbFMyeWY2OFRwV2I1M3RjVld4enA2S0p1R2s1bXc5MTlYUWpveUtGMlMweEZ1NHlsekNsRzdMMjRGeVpGLzZoclhSNGdLY3VJc2NrdEV1Z1Q5c0c5NE1KWE5JVUtQOXdKemlvNU50S3VVYTZiL3RRPT0tLTdTK2lqWUZ4RDE4ZHQ1YTdMcnp3VWc9PQ%3D%3D--e1285218a90b714974e8a1a3f8495f9583fe3265
+2. At end of session
+
+## Section 8.2.2
+1. `User.find_by(id: 4)` returns nil (database currently only has 3 users in it.)
+2. 
+```
+>> session = {}
+>> session[:user_id] = nil
+>> @current_user ||= User.find_by(id: session[:user_id])   #=> nil
+>> session[:user_id] = User.first.id                       #=> 1
+>> @current_user ||= User.find_by(id: session[:user_id])
+#=> #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2017-08-19 20:57:18", updated_at: "2017-08-19 20:57:18", password_digest: "$2a$10$cYWVJ7BP7bm9u5OZJMEhIuShPStlMeFcsWASvtt4LHu...">
+>> @current_user ||= User.find_by(id: session[:user_id])
+#=> #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2017-08-19 20:57:18", updated_at: "2017-08-19 20:57:18", password_digest: "$2a$10$cYWVJ7BP7bm9u5OZJMEhIuShPStlMeFcsWASvtt4LHu...">
+```
+
+## Section 8.2.3
+1. Removed session from browser cookies and layout _does_ revert to non-logged-in state.
+2. Closing browser completely and opening application again does correctly switch between logged-in and logged-out states.
+
+## Section 8.2.4
+1. Removing the bang from the Sessions helper `logged_in?` method does cause the "login with valid information" test to fail. Reinserting the bang causes all tests to pass again.
+
+## Section 8.2.5
+1. The "valid signup information" test fails.
+2. Confirmed. Commenting out triggers toggle action.
+
+## Section 8.3
+1. The "Log out" link does cause the correct changes to final site layout. It redirects to home page (root_path), and "Log in" link replaces the User's profile toggle menu.
+2. Cookie for session data seems to persist after logging out, but disappears from cookie list when closing and re-opening browser. Site functionality seems to work properly, even if session data is persisting.
+

@@ -31,6 +31,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in?
     # Section 7.4.4 Exercise #1
     assert_not flash.empty?
     assert_select 'div[class$="success"]'   # Has a div with a class that ends in 'success' (alert-success)
