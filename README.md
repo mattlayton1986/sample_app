@@ -475,3 +475,35 @@ rails routes | grep sessions#
 1. The "Log out" link does cause the correct changes to final site layout. It redirects to home page (root_path), and "Log in" link replaces the User's profile toggle menu.
 2. Cookie for session data seems to persist after logging out, but disappears from cookie list when closing and re-opening browser. Site functionality seems to work properly, even if session data is persisting.
 
+## Section 9.1.1
+1. 
+```
+>> user.remember_token
+=> "fMup-1SRebhfb7dWWXTFxg"
+>> user.remember_digest
+=> "$2a$10$v3pTVlP1gpUl4uwtJn4bSOCYnNCyqIFeFThulP6xN8rhNEIhbSTxK"
+```
+2. Both implementations in Listings 9.4 and 9.5 are correct (although, yes, very confusing).
+
+## Section 9.1.2
+1. Browser's cookies show a cookie for both the `user_id` and `remember_token`.
+2. Duly verified.
+
+## Section 9.1.3
+1. After successfully logging out, cookies are properly deleted from browser storage.
+
+## Section 9.1.4
+1. An error does occur if one browser tab is logged out of and user attempts to then log out of the second tab.
+2. Likewise, an error does occur if two different browsers are logged in, one is logged out of, and the second is closed and reopened without logging out.
+3. When test suite is run, all tests pass.
+
+## Section 9.2
+1. The checkbox does have its intended effect -- placing remember cookies in the browser when checked, and removing them on browser close when unchecked.
+2. [Played around with ternary operator in console.]
+
+## Section 9.3.1
+1. Modified `sessions_controller` to make `user` variable an instance variable, and added the following test to the `users_login_test`: `assert_equal cookies['remember_token'], assigns[:user].remember_token`. All tests pass.
+
+## Section 9.3.2
+1. Tests fail when the `authenticated?` expression is removed.
+
